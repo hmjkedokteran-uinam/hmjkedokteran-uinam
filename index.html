@@ -1,59 +1,6 @@
 <!doctype html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Portal HMJ Kedokteran Fakultas Kedokteran dan Ilmu Kesehatan UIN Alauddin Makassar." />
-    <title>HMJ Kedokteran UINAM — Kabinet Simfoni</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div class="noise"></div>
-    <header class="topbar">
-      <a class="brand" href="#beranda" aria-label="HMJ Kedokteran UINAM beranda">
-        <span class="brand-mark">✦</span><span>HMJ KEDOKTERAN <b>UINAM</b></span>
-      </a>
-      <div class="top-actions">
-        <span id="live-date" class="live-date"></span>
-        <button class="menu-toggle" aria-label="Buka menu">☰</button>
-      </div>
-    </header>
-
-    <aside class="sidebar" id="sidebar">
-      <p class="eyebrow">NAVIGASI RUANG</p>
-      <nav id="navigation" aria-label="Navigasi utama"></nav>
-      <div class="side-footer">
-        <p>HMJ Kedokteran FKIK<br />UIN Alauddin Makassar</p>
-        <a href="mailto:hmjkedokteran@uin-alauddin.ac.id">hmjkedokteran@uin-alauddin.ac.id</a>
-      </div>
-    </aside>
-
-    <main id="app"></main>
-
-    <template id="home-template">
-      <section class="hero section-shell">
-        <div class="hero-copy"><p class="eyebrow">KABINET SIMFONI / 2026</p><h1>HMJ Kedokteran<br /><em>UIN Alauddin Makassar.</em></h1><p class="intro">Hangat Bersua, Cerdas Berkarya. Ruang kolaborasi mahasiswa Fakultas Kedokteran dan Ilmu Kesehatan untuk bertumbuh, berkarya, dan mengabdi.</p><div class="hero-links"><a class="button" href="#tentang">Kenali kami <span>↗</span></a><a class="text-link" href="#program">Lihat agenda ↓</a></div></div>
-        <div class="hero-art" aria-label="Logo HMJ Kedokteran"><div class="sun"></div><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="cross">✦</div><p>HMJ KEDOKTERAN FKIK<br />UIN ALAUDDIN MAKASSAR</p></div>
-      </section>
-      <section class="ticker"><span>HANGAT BERSUA</span><i></i><span>CERDAS BERKARYA</span><i></i><span>KABINET SIMFONI</span><i></i><span>TAHUN 2026</span><i></i><span>HANGAT BERSUA</span></section>
-      <section class="section-shell statement-grid" id="tentang"><div><p class="eyebrow">01 — ARAH GERAK</p><h2>Bersama dalam hangat,<br /><em>bertumbuh dalam karya.</em></h2></div><div class="vision-card"><span>VISI</span><p>Menjadi ruang bertumbuh bagi mahasiswa kedokteran yang hangat dalam bersua, cerdas dalam berkarya, dan berlandaskan nilai keislaman.</p></div><div class="mission-card"><span>MISI</span><ul><li>Menguatkan kapasitas akademik, organisasi, dan karakter mahasiswa.</li><li>Membangun kolaborasi untuk mahasiswa dan masyarakat.</li><li>Mendorong karya, pengabdian, dan inovasi bermanfaat.</li></ul></div></section>
-      <section class="section-shell leadership" id="pengurus"><div class="section-head"><div><p class="eyebrow">02 — PENGURUS INTI</p><h2>Orang-orang di balik<br /><em>gerak kami.</em></h2></div><p>Pengurus inti Kabinet Simfoni tahun kepengurusan 2026.</p></div><div class="leaders" id="leaders"></div></section>
-      <section class="section-shell departments" id="departemen"><div class="section-head"><div><p class="eyebrow">03 — DEPARTEMEN</p><h2>Satu rumah,<br /><em>sepuluh ruang.</em></h2></div><p>Jelajahi pengurus dan program kerja dari seluruh departemen.</p></div><div class="department-list" id="department-list"></div></section>
-      <section class="section-shell agenda" id="program"><div class="section-head"><div><p class="eyebrow">04 — AGENDA TERDEKAT</p><h2>Temui kami<br /><em>di lapangan.</em></h2></div><p>Program kerja disusun berdasarkan data tanggal yang dapat dikelola editor.</p></div><div class="agenda-list" id="agenda-list"></div></section>
-    </template>
-
-    <template id="department-template">
-      <section class="department-hero section-shell"><a href="#beranda" class="back">← Kembali ke halaman utama</a><div class="room-number" id="room-number"></div><div class="department-title"><div class="department-icon" id="room-icon"></div><div><p class="eyebrow" id="room-eyebrow"></p><h1 id="room-title"></h1><p id="room-description" class="intro"></p></div></div></section>
-      <section class="section-shell team-section"><p class="eyebrow">PENGURUS DEPARTEMEN</p><div id="team-list" class="team-list"></div></section>
-      <section class="section-shell department-programs"><div class="section-head"><div><p class="eyebrow">PROGRAM KERJA</p><h2>Agenda dan<br /><em>rencana kerja.</em></h2></div><p>Setiap agenda dilengkapi tanggal, deskripsi, dan kategori kegiatan.</p></div><div class="agenda-list" id="department-programs"></div></section>
-      <section class="section-shell docs-section"><div class="section-head"><div><p class="eyebrow">DOKUMENTASI PROGRAM KERJA</p><h2>Jejak karya<br /><em>kami.</em></h2></div><p>Arsip kegiatan yang terus tumbuh bersama perjalanan departemen.</p></div><div id="documentation" class="documentation"></div></section>
-    </template>
-
-    <footer><div><span class="brand-mark">✦</span> HMJ KEDOKTERAN UINAM</div><p>© <span id="year"></span> HMJ Kedokteran FKIK UIN Alauddin Makassar</p><div class="socials"><a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram ↗</a><a href="https://www.tiktok.com/" target="_blank" rel="noreferrer">TikTok ↗</a><a href="mailto:hmjkedokteran@uin-alauddin.ac.id">Email</a></div></footer>
-    <script src="org-data.js"></script>
-    <script src="app.js"></script>
-  </body>
-</html>
+<html lang="id"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="Portal HMJ Kedokteran UIN Alauddin Makassar." /><title>HMJ Kedokteran UIN Alauddin Makassar — Kabinet Simfoni</title><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap" rel="stylesheet" /><link rel="stylesheet" href="styles.css" /></head>
+<body><div class="noise"></div><header class="topbar"><a class="brand" href="#beranda" aria-label="Beranda"><img class="brand-mark" id="header-logo" alt="Logo HMJ" /><span id="header-name"></span></a><div class="top-actions"><span id="live-date" class="live-date"></span><button class="menu-toggle" aria-label="Buka menu">☰</button></div></header><aside class="sidebar" id="sidebar"><p class="eyebrow">NAVIGASI RUANG</p><nav id="navigation" aria-label="Navigasi utama"></nav><div class="side-footer"><p id="sidebar-name"></p><a id="sidebar-email"></a></div></aside><main id="app"></main>
+<template id="home-template"><section class="hero section-shell" id="beranda"><div class="hero-copy"><p class="eyebrow" id="hero-cabinet"></p><h1 id="hero-name"></h1><p class="intro" id="hero-jargon"></p><div class="hero-links"><a class="button" href="#tentang">Kenali kami <span>↗</span></a><a class="text-link" href="#program">Lihat agenda ↓</a></div></div><div class="hero-art" aria-label="Logo HMJ Kedokteran"><div class="sun"></div><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><img class="hero-logo" id="hero-logo" alt="Logo HMJ" /><p id="hero-logo-name"></p></div></section><section class="ticker" id="ticker"></section><section class="section-shell statement-grid" id="tentang"><div><p class="eyebrow">01 — ARAH GERAK</p><h2>Bersama dalam hangat,<br /><em>bertumbuh dalam karya.</em></h2></div><div class="vision-card"><span>VISI</span><p id="vision"></p></div><div class="mission-card"><span>MISI</span><ul id="missions"></ul></div></section><section class="section-shell leadership" id="pengurus"><div class="section-head"><div><p class="eyebrow">02 — PENGURUS INTI</p><h2>Orang-orang di balik<br /><em>gerak kami.</em></h2></div><p id="core-board-caption"></p></div><div class="leaders" id="leaders"></div></section><section class="section-shell departments" id="departemen"><div class="section-head"><div><p class="eyebrow">03 — DEPARTEMEN</p><h2>Satu rumah,<br /><em>sepuluh ruang.</em></h2></div><p>Jelajahi pengurus dan program kerja dari seluruh departemen.</p></div><div class="department-list" id="department-list"></div></section><section class="section-shell agenda" id="program"><div class="section-head"><div><p class="eyebrow">04 — AGENDA TERDEKAT</p><h2>Temui kami<br /><em>di lapangan.</em></h2></div><p>Program kerja disusun berdasarkan data tanggal yang dapat dikelola editor.</p></div><div class="agenda-list" id="agenda-list"></div></section></template>
+<template id="department-template"><section class="department-hero section-shell"><a href="#beranda" class="back">← Kembali ke halaman utama</a><div class="room-number" id="room-number"></div><div class="department-title"><img class="department-icon" id="room-logo" alt="Logo departemen" /><div><p class="eyebrow" id="room-eyebrow"></p><h1 id="room-title"></h1><p id="room-description" class="intro"></p><div class="department-socials" id="department-socials"></div></div></div></section><section class="section-shell team-section"><p class="eyebrow">PENGURUS DEPARTEMEN</p><div id="team-list" class="team-list"></div></section><section class="section-shell department-programs"><div class="section-head"><div><p class="eyebrow">PROGRAM KERJA</p><h2>Agenda dan<br /><em>rencana kerja.</em></h2></div><p>Setiap agenda dilengkapi tanggal, deskripsi, kategori, dan dokumentasi foto.</p></div><div class="agenda-list" id="department-programs"></div></section><section class="section-shell docs-section"><div class="section-head"><div><p class="eyebrow">DOKUMENTASI PROGRAM KERJA</p><h2>Jejak karya<br /><em>kami.</em></h2></div><p>Ganti URL/path gambar pada org-data.js untuk memperbarui arsip foto.</p></div><div id="documentation" class="documentation"></div></section></template>
+<footer><div class="footer-brand"><img class="brand-mark" id="footer-logo" alt="Logo HMJ" /> <span id="footer-name"></span></div><p>© <span id="year"></span> <span id="footer-org-name"></span></p><div class="socials"><a id="footer-instagram" target="_blank" rel="noreferrer">Instagram ↗</a><a id="footer-tiktok" target="_blank" rel="noreferrer">TikTok ↗</a><a id="footer-email">Email</a></div></footer><script src="org-data.js"></script><script src="app.js"></script></body></html>
