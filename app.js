@@ -1,24 +1,48 @@
-const departments = [
-  {id:'sekretaris',name:'Sekretaris',icon:'✎',desc:'Menjaga ritme administrasi dan informasi organisasi.',lead:'Aulia Rahmah',role:'Kepala Sekretaris'},
-  {id:'bendahara',name:'Bendahara',icon:'₊',desc:'Mengelola sumber daya dengan transparan dan bertanggung jawab.',lead:'Muh. Fikri',role:'Kepala Bendahara'},
-  {id:'kaderisasi',name:'Kaderisasi',icon:'⌁',desc:'Menyiapkan kader yang tangguh, adaptif, dan berintegritas.',lead:'Nabila Azzahra',role:'Kepala Departemen'},
-  {id:'akademik',name:'Akademik & Keilmuan',icon:'◈',desc:'Menyalakan budaya belajar dan diskusi ilmiah.',lead:'Ahmad Rasyid',role:'Kepala Departemen'},
-  {id:'minat-bakat',name:'Minat & Bakat',icon:'✺',desc:'Merayakan potensi, kreativitas, dan prestasi mahasiswa.',lead:'Siti Nurhaliza',role:'Kepala Departemen'},
-  {id:'sosial',name:'Sosial Masyarakat',icon:'♡',desc:'Menghubungkan kampus dengan denyut kebutuhan masyarakat.',lead:'Farhan Akbar',role:'Kepala Departemen'},
-  {id:'kominfo',name:'Komunikasi & Informasi',icon:'◌',desc:'Merangkai cerita organisasi melalui komunikasi yang bermakna.',lead:'Nurfadillah',role:'Kepala Departemen'},
-  {id:'dana-usaha',name:'Dana & Usaha',icon:'↗',desc:'Mengembangkan kemandirian ekonomi dan jejaring kemitraan.',lead:'Rizky Ananda',role:'Kepala Departemen'},
-  {id:'advokasi',name:'Advokasi & Kesejahteraan',icon:'⚖',desc:'Mengawal suara dan kesejahteraan mahasiswa kedokteran.',lead:'M. Ilham',role:'Kepala Departemen'},
-  {id:'keagamaan',name:'Keagamaan',icon:'☾',desc:'Menumbuhkan spiritualitas dalam setiap langkah pengabdian.',lead:'Aisyah Humaira',role:'Kepala Departemen'}
-];
-const core = [['Raihan Fadillah','Ketua Umum'],['Nur Aini','Wakil Ketua'],['Aulia Rahmah','Sekretaris Umum'],['Muh. Fikri','Bendahara Umum']];
-const app=document.querySelector('#app'), nav=document.querySelector('#navigation');
-const initials=n=>n.split(' ').map(x=>x[0]).slice(0,2).join('');
-function renderNav(active){nav.innerHTML=`<a class="${active==='beranda'?'active':''}" href="#beranda">Main Room <span>00</span></a>`+departments.map((d,i)=>`<a class="${active===d.id?'active':''}" href="#${d.id}">${d.name}<span>${String(i+1).padStart(2,'0')}</span></a>`).join('');}
-function home(){app.innerHTML=document.querySelector('#home-template').innerHTML;renderNav('beranda');document.querySelector('#leaders').innerHTML=core.map(([name,role])=>`<article class="leader"><div class="avatar">${initials(name)}</div><div><p>${role}</p><h3>${name}</h3></div></article>`).join('');document.querySelector('#department-list').innerHTML=departments.map((d,i)=>`<a class="department-row" href="#${d.id}"><div class="dept-symbol">${d.icon}</div><h3>${d.name}</h3><p>${d.desc}</p><span class="arrow">↗</span></a>`).join(''); const agendas=[['Kelas Klinik','Akademik & Keilmuan',3],['Medical Charity','Sosial Masyarakat',11],['Pekan Olahraga Medika','Minat & Bakat',18]];document.querySelector('#agenda-list').innerHTML=agendas.map(([title,dept,plus])=>{let d=new Date();d.setDate(d.getDate()+plus);return `<article class="agenda-item"><time>${d.toLocaleDateString('id-ID',{day:'2-digit',month:'short',year:'numeric'}).toUpperCase()}</time><div><h3>${title}</h3><p>${dept}</p></div><span>PROGRAM KERJA</span></article>`}).join('');}
-function room(id){const d=departments.find(x=>x.id===id);if(!d)return home();app.innerHTML=document.querySelector('#department-template').innerHTML;renderNav(id);const index=departments.indexOf(d)+1;document.querySelector('#room-number').textContent=String(index).padStart(2,'0');document.querySelector('#room-icon').textContent=d.icon;document.querySelector('#room-eyebrow').textContent=`RUANG ${String(index).padStart(2,'0')} — DEPARTEMEN`;document.querySelector('#room-title').textContent=d.name;document.querySelector('#room-description').textContent=d.desc;const people=[[d.lead,d.role],['Nadia Putri','Sekretaris Departemen'],['Ardiansyah','Staf Program'],['Miftahul Jannah','Staf Program'],['Dimas Pratama','Staf Media'],['Salsabila','Staf Media']];document.querySelector('#team-list').innerHTML=people.map(([name,role])=>`<article class="team-member"><div class="mini-avatar">${initials(name)}</div><div><h3>${name}</h3><p>${role}</p></div></article>`).join('');const docs=['Rapat Kerja Departemen','Program Unggulan','Aksi Kolaborasi'];document.querySelector('#documentation').innerHTML=docs.map((x,i)=>`<article class="doc-card"><span>0${i+1} / ${new Date().getFullYear()}</span><h3>${x}</h3><p>${d.name}</p></article>`).join('');}
-function route(){let id=location.hash.slice(1)||'beranda';const homeSections=['beranda','tentang','pengurus','departemen','program'];if(homeSections.includes(id)){home();requestAnimationFrame(()=>document.querySelector(id==='beranda'?'.hero':`#${id}`)?.scrollIntoView({block:'start'}));}else room(id);document.querySelector('#sidebar').classList.remove('open');}
-window.addEventListener('hashchange',route);route();
-const date=new Date();document.querySelector('#live-date').textContent=date.toLocaleDateString('id-ID',{weekday:'short',day:'numeric',month:'short',year:'numeric'}).toUpperCase();document.querySelector('#year').textContent=date.getFullYear();
-document.querySelector('.menu-toggle').onclick=()=>document.querySelector('#sidebar').classList.toggle('open');
-const panel=document.querySelector('#color-panel');document.querySelector('#customizer-toggle').onclick=()=>{panel.classList.toggle('open');document.querySelector('#customizer-toggle').setAttribute('aria-expanded',panel.classList.contains('open'));};
-const defaults={forest:'#14532D',grass:'#4CAF50',yellow:'#FFC107'};document.querySelectorAll('[data-color]').forEach(input=>{let c=localStorage.getItem('color-'+input.dataset.color)||input.value;input.value=c;document.documentElement.style.setProperty('--'+input.dataset.color,c);input.oninput=()=>{document.documentElement.style.setProperty('--'+input.dataset.color,input.value);localStorage.setItem('color-'+input.dataset.color,input.value)}});document.querySelector('#reset-colors').onclick=()=>{Object.entries(defaults).forEach(([key,value])=>{localStorage.removeItem('color-'+key);document.documentElement.style.setProperty('--'+key,value);document.querySelector(`[data-color="${key}"]`).value=value})};
+const app = document.querySelector('#app');
+const nav = document.querySelector('#navigation');
+const { departments, coreBoard, programs } = organizationData;
+const initials = name => name.split(' ').filter(Boolean).map(part => part[0]).slice(0, 2).join('');
+const formatDate = date => new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${date}T00:00:00`));
+const escapeHtml = value => String(value).replace(/[&<>'"]/g, char => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', "'":'&#039;', '"':'&quot;' }[char]));
+
+function renderNav(active) {
+  nav.innerHTML = `<a class="${active === 'beranda' ? 'active' : ''}" href="#beranda">Beranda <span>00</span></a>` + departments.map((department, index) => `<a class="${active === department.id ? 'active' : ''}" href="#${department.id}">${escapeHtml(department.name)}<span>${String(index + 1).padStart(2, '0')}</span></a>`).join('');
+}
+function programCards(items, emptyText) {
+  return items.length ? items.map(program => `<article class="agenda-item"><time datetime="${program.date}">${formatDate(program.date).toUpperCase()}</time><div><h3>${escapeHtml(program.name)}</h3><p>${escapeHtml(program.description)}</p></div><span>${escapeHtml(program.category || 'PROGRAM KERJA')}</span></article>`).join('') : `<p class="empty-state">${emptyText}</p>`;
+}
+function home() {
+  app.innerHTML = document.querySelector('#home-template').innerHTML;
+  renderNav('beranda');
+  document.querySelector('#leaders').innerHTML = coreBoard.map(person => `<article class="leader"><div class="avatar">${initials(person.name)}</div><div><p>${escapeHtml(person.role)}</p><h3>${escapeHtml(person.name)}</h3></div></article>`).join('');
+  document.querySelector('#department-list').innerHTML = departments.map((department, index) => `<a class="department-row" href="#${department.id}"><div class="dept-symbol">${department.icon}</div><h3>${escapeHtml(department.name)}</h3><p>Ketua Departemen: ${escapeHtml(department.leader)}</p><span class="arrow">↗</span></a>`).join('');
+  const upcoming = [...programs].filter(program => new Date(`${program.date}T23:59:59`) >= new Date()).sort((a, b) => a.date.localeCompare(b.date)).slice(0, 4);
+  document.querySelector('#agenda-list').innerHTML = programCards(upcoming, 'Belum ada agenda mendatang yang dipublikasikan.');
+}
+function room(id) {
+  const department = departments.find(item => item.id === id);
+  if (!department) return home();
+  const deptPrograms = programs.filter(program => program.departmentId === id).sort((a, b) => a.date.localeCompare(b.date));
+  app.innerHTML = document.querySelector('#department-template').innerHTML;
+  renderNav(id);
+  const index = departments.indexOf(department) + 1;
+  document.querySelector('#room-number').textContent = String(index).padStart(2, '0');
+  document.querySelector('#room-icon').textContent = department.icon;
+  document.querySelector('#room-eyebrow').textContent = `RUANG ${String(index).padStart(2, '0')} — DEPARTEMEN`;
+  document.querySelector('#room-title').textContent = department.name;
+  document.querySelector('#room-description').textContent = `Ruang kerja ${department.name} dalam ${organizationData.cabinet}.`;
+  document.querySelector('#team-list').innerHTML = [{ name: department.leader, role: 'Ketua Departemen' }, ...department.members.map(name => ({ name, role: 'Staf Departemen' }))].map(person => `<article class="team-member"><div class="mini-avatar">${initials(person.name)}</div><div><h3>${escapeHtml(person.name)}</h3><p>${person.role}</p></div></article>`).join('');
+  document.querySelector('#department-programs').innerHTML = programCards(deptPrograms, 'Program kerja departemen ini akan diperbarui oleh editor.');
+  document.querySelector('#documentation').innerHTML = department.documentation.length ? department.documentation.map((item, itemIndex) => `<article class="doc-card"><span>${String(itemIndex + 1).padStart(2, '0')} / ${organizationData.year}</span><h3>${escapeHtml(item.title)}</h3><p>${escapeHtml(item.caption || department.name)}</p></article>`).join('') : `<p class="empty-state">Dokumentasi program kerja akan ditampilkan di ruang ini.</p>`;
+}
+function route() {
+  const id = location.hash.slice(1) || 'beranda';
+  const homeSections = ['beranda', 'tentang', 'pengurus', 'departemen', 'program'];
+  if (homeSections.includes(id)) { home(); requestAnimationFrame(() => document.querySelector(id === 'beranda' ? '.hero' : `#${id}`)?.scrollIntoView({ block: 'start' })); } else room(id);
+  document.querySelector('#sidebar').classList.remove('open');
+}
+window.addEventListener('hashchange', route);
+document.querySelector('.menu-toggle').onclick = () => document.querySelector('#sidebar').classList.toggle('open');
+document.querySelector('#live-date').textContent = new Intl.DateTimeFormat('id-ID', { weekday:'short', day:'numeric', month:'short', year:'numeric' }).format(new Date()).toUpperCase();
+document.querySelector('#year').textContent = organizationData.year;
+route();
