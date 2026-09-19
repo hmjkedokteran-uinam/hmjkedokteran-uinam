@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title desc">
+  <title id="title">Placeholder logo departemen</title>
+  <desc id="desc">Placeholder netral yang perlu diganti dengan logo resmi departemen.</desc>
+  <rect width="400" height="400" fill="#edf3ed"/>
+  <rect x="56" y="56" width="288" height="288" rx="24" fill="none" stroke="#8aa08e" stroke-width="12"/>
+  <path d="M120 200h160M200 120v160" stroke="#8aa08e" stroke-width="12" stroke-linecap="round"/>
+</svg>
