@@ -8,7 +8,7 @@ const organizationData = {
   year: 2026,
   cabinet: 'Simfoni',
   jargon: 'Hangat Bersua, Cerdas Berkarya',
-  logo: { src: 'assets/logo-hmj.svg', alt: 'Logo HMJ Kedokteran UIN Alauddin Makassar' },
+  logo: { src: 'logo: 'assets/organization/logo/Logo HMJK.png',' },
   profile: {
     title: 'Rumah kolaborasi bagi mahasiswa kedokteran.',
     description: 'Himpunan Mahasiswa Jurusan Kedokteran Fakultas Kedokteran dan Ilmu Kesehatan UIN Alauddin Makassar adalah ruang bertumbuh, belajar, serta berkarya bersama bagi mahasiswa Kedokteran.',
